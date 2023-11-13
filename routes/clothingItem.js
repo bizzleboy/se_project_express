@@ -1,6 +1,6 @@
 // clothingItem.js in routes folder
 const router = require('express').Router();
-const { createItem, getItems, updateItem, deleteItem, likeItem, unlikeItem } = require('../controllers/clothingItem')
+const { createItem, getItems, deleteItem, likeItem, unlikeItem } = require('../controllers/clothingItem')
 
 // Existing CRUD operations
 router.post('/', createItem);

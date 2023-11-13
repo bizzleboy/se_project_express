@@ -9,6 +9,7 @@ const {
 // userController.js
 const User = require('../models/userModel');
 
+
 // Add your User model methods similar to the ClothingItem model
 
 const createUser = (req, res) => {
@@ -51,10 +52,10 @@ const getUser = (req, res) => {
 };
 
 
-const getUsers = (req, res) => {
+const getUsers = ( res) => {
     User.find({})
         .then(users => res.status(STATUS_OK).send({ data: users }))
-        .catch(err => res.status(STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Error retrieving users' }));
+        .catch(res.status(STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Error retrieving users' }));
 };
 
 

@@ -6,8 +6,7 @@ const {
     createUser, 
     getUser, 
     getUsers, 
-    updateUser, 
-    deleteUser 
+
 } = require('../controllers/userController');
 
 // Get all users

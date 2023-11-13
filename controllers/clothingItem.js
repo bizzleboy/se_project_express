@@ -3,7 +3,6 @@ const ClothingItem = require('../models/clothingItem');
 const { 
     STATUS_OK, 
     STATUS_CREATED, 
-    STATUS_NO_CONTENT, 
     STATUS_BAD_REQUEST, 
     STATUS_NOT_FOUND, 
     STATUS_INTERNAL_SERVER_ERROR 

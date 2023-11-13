@@ -1,14 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
-const { 
-  STATUS_OK, 
-  STATUS_CREATED, 
-  STATUS_NO_CONTENT, 
-  STATUS_BAD_REQUEST, 
-  STATUS_NOT_FOUND, 
-  STATUS_INTERNAL_SERVER_ERROR 
-} = require('../utils/constants');
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 
