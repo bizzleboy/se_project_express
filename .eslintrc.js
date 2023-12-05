@@ -6,7 +6,7 @@ module.exports = {
         "amd": true,
         "node": true
     },
-    "extends": [
+    "extends": ["airbnb-base","prettier",
         "eslint:recommended",
         "plugin:react/recommended"
     ],
@@ -30,6 +30,7 @@ module.exports = {
     "plugins": [
         "react"
     ],
-    "rules": {
+    "rules": {"no-underscore-dangle":["error",{"allow":["_id"]}]
     }
+
 }

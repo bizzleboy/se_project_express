@@ -45,24 +45,22 @@ const getItems = (req, res) => {
         if (!item) {
           return res.status(STATUS_NOT_FOUND).send({ message: 'Item not found' });
         }
-        // Send a 200 status code and include the deleted item in the response
-        res.status(STATUS_OK).send({ message: 'Item successfully deleted', data: item });
+        return res.status(STATUS_OK).send({ message: 'Item successfully deleted', data: item });
       })
       .catch(err => {
         if (err.name === 'CastError') {
-          res.status(STATUS_BAD_REQUEST).send({ message: 'Invalid item ID format' });
-        } else {
-          res.status(STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Error deleting item' });
+          return res.status(STATUS_BAD_REQUEST).send({ message: 'Invalid item ID format' });
         }
+        // No need for an else block here because if the above if condition is true, the function will exit
+        return res.status(STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Error deleting item' });
       });
+      
   };
   
   
-
-  
   const likeItem = (req, res) => {
-    const itemId = req.params.itemId;
-    const userId = req.user._id;
+    const { itemId } = req.params; // Destructuring req.params
+    const { _id: userId } = req.user; // Destructuring req.user and renaming _id to userId
   
     ClothingItem.findByIdAndUpdate(
       itemId,
@@ -73,20 +71,21 @@ const getItems = (req, res) => {
       if (!item) {
         return res.status(STATUS_NOT_FOUND).send({ message: 'Item not found' });
       }
-      res.status(STATUS_OK).send({ data: item });
+      return res.status(STATUS_OK).send({ data: item }); // Return statement for when item exists
     })
     .catch(err => {
       if (err.name === 'CastError') {
-        res.status(STATUS_BAD_REQUEST).send({ message: 'Invalid item ID format' });
-      } else {
-        res.status(STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Error liking item' });
+        return res.status(STATUS_BAD_REQUEST).send({ message: 'Invalid item ID format' });
       }
+      return res.status(STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Error liking item' });
     });
   };
   
+  
+  
   const unlikeItem = (req, res) => {
-    const itemId = req.params.itemId;
-    const userId = req.user._id;
+    const { itemId } = req.params; // Destructured assignment for itemId
+    const { _id: userId } = req.user; // Destructured assignment for userId, and renaming _id to userId
   
     ClothingItem.findByIdAndUpdate(
       itemId,
@@ -97,16 +96,18 @@ const getItems = (req, res) => {
       if (!item) {
         return res.status(STATUS_NOT_FOUND).send({ message: 'Item not found' });
       }
-      res.status(STATUS_OK).send({ data: item });
+      return res.status(STATUS_OK).send({ data: item }); // Return statement for when item exists
     })
     .catch(err => {
       if (err.name === 'CastError') {
-        res.status(STATUS_BAD_REQUEST).send({ message: 'Invalid item ID format' });
-      } else {
-        res.status(STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Error unliking item' });
+        return res.status(STATUS_BAD_REQUEST).send({ message: 'Invalid item ID format' });
       }
+      // Make sure to handle other types of errors as well
+      return res.status(STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Error unliking item' });
     });
   };
+  
+  
 module.exports = {
     createItem,
     getItems,
